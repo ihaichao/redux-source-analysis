@@ -54,6 +54,9 @@ function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, une
   }
 }
 
+/**
+ * reducer 合法性检测
+ */
 function assertReducerShape(reducers) {
   Object.keys(reducers).forEach(key => {
     const reducer = reducers[key]
@@ -153,6 +156,9 @@ export default function combineReducers(reducers) {
         throw new Error(errorMessage)
       }
       nextState[key] = nextStateForKey
+      // 1. action type 存在,返回新的state, hasChanged 为 true
+      // 2. action type 不存在,返回原来的state, hasChanged 为 false
+      // 3. 不管action type 是否存在, 在原来的state上修改,但是返回的是修改后的state(没有返回拷贝), hasChanged还是为false
       hasChanged = hasChanged || nextStateForKey !== previousStateForKey
     }
     return hasChanged ? nextState : state

@@ -184,11 +184,11 @@ export default function createStore(reducer, preloadedState, enhancer) {
     }
 
     const listeners = currentListeners = nextListeners // TODO: 为什么要更新 currentListeners
-    // TODO: 触发所有已订阅的 listener，通知其 state 更新信息
+    // TODO: 触发所有已订阅的 listener
     for (let i = 0; i < listeners.length; i++) {
-      // TODO: 为什么不写成 listeners[i]()
+      // listeners[i]() this 指向 listeners
       const listener = listeners[i]
-      listener()
+      listener() // this 指向 window
     }
 
     return action

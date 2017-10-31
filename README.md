@@ -1,2 +1,2 @@
-# redux-source-analysis
-Redux source code analysis.
+# redux-source-note
+Redux source code note.
