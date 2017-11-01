@@ -59,9 +59,9 @@ export default function createStore(reducer, preloadedState, enhancer) {
 
   let currentReducer = reducer
   let currentState = preloadedState
-  let currentListeners = []
+  let currentListeners = [] // 当前监听 store 变化的监听器
   let nextListeners = currentListeners
-  let isDispatching = false // 分发状态
+  let isDispatching = false // action 是否处于分发的处理过程中
 
   /**
    * TODO: 为什么不能直接修改 currentListeners ？
